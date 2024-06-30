@@ -369,8 +369,14 @@
             // Handle form submission
             $('#contactForm').on('submit', function(event) {
                 event.preventDefault(); // Prevent default form submission
-                const formData = new FormData(this);
-                formData.set('date', new Date().toISOString().split('T')[0]);
+
+                // Set the value of the hidden date field
+                $('#date').val(new Date().toISOString().split('T')[0]);
+
+                // Serialize form data
+                var formData = $(this).serialize();
+
+                // Submit form data via AJAX
                 $.ajax({
                     url: 'https://script.google.com/macros/s/AKfycbyJLmJFcT6CgbbInOW_3jpPdGWUhKXgQ5HCJKUdDuOPL6ZuCcYAJGhIPt4bePuoxwXL/exec',
                     method: 'POST',
