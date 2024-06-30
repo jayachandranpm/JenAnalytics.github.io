@@ -255,7 +255,7 @@
         <section id="contact" class="contact">
             <div class="container">
                 <h2>Contact Us</h2>
-                <div id="successMessage" class="success-message">
+                <div id="successMessage" class="success-message" style="display:none;">
                     Thank you! We'll be in touch soon.
                 </div>
                 <form id="contactForm" class="contact-form fade-in">
@@ -284,9 +284,9 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Message:</label>
-                        <textarea id="message" name="message" required></textarea>
+                        <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <input type="hidden" id="date" name="date" value="">
+                    <input type="hidden" id="date" name="date">
                     <button type="submit" class="submit-btn">Submit</button>
                 </form>
             </div>
@@ -294,54 +294,11 @@
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2023 JEN Analytics. All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 JEN Analytics. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
-                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-            },
-            retina_detect: true
-        });
-
-        // Scroll animations
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = {
-            threshold: 0.5,
-            rootMargin: "0px 0px -100px 0px"
-        };
-
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('appear');
-                    appearOnScroll.unobserve(entry.target);
-                }
-            });
-        }, appearOptions);
-
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
-
         $(document).ready(function() {
             // Fetch countries using REST Countries API
             $.ajax({
@@ -381,7 +338,7 @@
                     url: 'https://script.google.com/macros/s/AKfycbyJLmJFcT6CgbbInOW_3jpPdGWUhKXgQ5HCJKUdDuOPL6ZuCcYAJGhIPt4bePuoxwXL/exec',
                     method: 'POST',
                     data: formData,
-                    dataType: 'json',
+                    dataType: 'json',  // Assuming you expect JSON response
                     success: function(response) {
                         if (response.result === 'Success') {
                             $('#contactForm').hide(); // Hide the form
@@ -397,6 +354,128 @@
                 });
             });
         });
+
+        // Scroll animation
+        $(window).on('scroll', function() {
+            $('.fade-in').each(function() {
+                var scrollTop = $(window).scrollTop();
+                var elementOffset = $(this).offset().top;
+                var windowHeight = $(window).height();
+                var distance = elementOffset - scrollTop;
+
+                if (distance < windowHeight - 100) {
+                    $(this).addClass('appear');
+                }
+            });
+        });
+
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#ffffff'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 5,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </body>
 </html>
