@@ -88,23 +88,44 @@
             letter-spacing: 2px;
         }
 
+        .services {
+            margin-top: 4rem;
+        }
+
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            max-width: 2xl;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 6px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (min-width: 640px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .service-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 2xl;
+            padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            display: flex;
+            border: 1px solid #ddd;
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
+            display: flex;
         }
 
         .service-card:hover {
@@ -113,23 +134,25 @@
         }
 
         .service-icon {
-            font-size: 3rem;
+            font-size: 2rem;
             color: var(--primary-color);
             margin-bottom: 20px;
         }
 
         .service-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-top: 1rem;
+            color: var(--text-color);
+            font-weight: 600;
         }
 
         .service-description {
             font-size: 1rem;
             color: var(--text-color);
-            line-height: 1.6;
+            font-weight: 300;
+            margin-top: 0.5rem;
         }
-
+        
         .contact {
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
@@ -226,30 +249,30 @@
     </header>
 
     <main>
-        <section class="services container">
+         <section class="services container">
             <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <i class="fas fa-chart-line service-icon"></i>
+            <ul class="services-grid">
+                <li class="service-card fade-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 service-icon"><path d="M3 3v18h18"></path><rect width="4" height="7" x="7" y="10" rx="1"></rect><rect width="4" height="12" x="15" y="5" rx="1"></rect></svg>
                     <h3 class="service-title">Data Analysis</h3>
                     <p class="service-description">Unlock the power of data with advanced analysis and visualization.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-lightbulb service-icon"></i>
+                </li>
+                <li class="service-card fade-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 service-icon"><path d="M3 3v18h18"></path><rect width="4" height="7" x="7" y="10" rx="1"></rect><rect width="4" height="12" x="15" y="5" rx="1"></rect></svg>
                     <h3 class="service-title">Business Intelligence</h3>
                     <p class="service-description">Gain strategic insights and improve decision-making with tailored BI solutions.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-robot service-icon"></i>
+                </li>
+                <li class="service-card fade-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 service-icon"><path d="M3 3v18h18"></path><rect width="4" height="7" x="7" y="10" rx="1"></rect><rect width="4" height="12" x="15" y="5" rx="1"></rect></svg>
                     <h3 class="service-title">Machine Learning</h3>
                     <p class="service-description">Deploy AI algorithms to predict trends and optimize operations.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <i class="fas fa-comments service-icon"></i>
+                </li>
+                <li class="service-card fade-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 service-icon"><path d="M3 3v18h18"></path><rect width="4" height="7" x="7" y="10" rx="1"></rect><rect width="4" height="12" x="15" y="5" rx="1"></rect></svg>
                     <h3 class="service-title">Consulting</h3>
                     <p class="service-description">Expert guidance to transform your business through data-driven strategies.</p>
-                </div>
-            </div>
+                </li>
+            </ul>
         </section>
 
         <section id="contact" class="contact">
