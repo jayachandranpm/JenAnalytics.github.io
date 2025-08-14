@@ -954,6 +954,7 @@
             $.ajax({
                 url: 'https://restcountries.com/v3.1/all',
                 method: 'GET',
+                timeout: 10000, // 10 second timeout
                 success: function(data) {
                     // Sort countries by name
                     data.sort(function(a, b) {
