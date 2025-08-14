@@ -952,9 +952,8 @@
         $(document).ready(function() {
             // Fetch countries using REST Countries API
             $.ajax({
-                url: 'https://restcountries.com/v3.1/all',
+                url: 'https://restcountries.com/v3.1/all?fields=name',
                 method: 'GET',
-                timeout: 10000, // 10 second timeout
                 success: function(data) {
                     // Sort countries by name
                     data.sort(function(a, b) {
